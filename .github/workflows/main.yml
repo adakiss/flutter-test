@@ -1,8 +1,7 @@
 name: Flutter Build (iOS and Android)
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,16 +14,11 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.2'  # Your Flutter version
-          cache: true
+          channel: stable
+          flutter-version-file: pubspec.yaml # path to pubspec.yaml
 
       - name: Install Flutter dependencies
         run: flutter pub get
-
-      - name: Install CocoaPods dependencies (iOS)
-        working-directory: ios
-        run: |
-          pod install
 
       - name: Build Android APK
         run: flutter build apk --release
