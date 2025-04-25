@@ -20,11 +20,6 @@ jobs:
       - name: Install Flutter dependencies
         run: flutter pub get
 
-      - name: Install CocoaPods dependencies (iOS)
-        working-directory: ios
-        run: |
-          pod install
-
       - name: Build Android APK
         run: flutter build apk --release
 
